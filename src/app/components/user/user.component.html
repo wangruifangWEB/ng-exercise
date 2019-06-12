@@ -1,0 +1,51 @@
+<div>
+  <p>姓名：{{name}}</p>
+  <p>地址：{{address.city}}{{address.state}}</p>
+</div>
+
+<!-- 循环 ngFor -->
+<ul>
+  <li *ngFor='let hobby of hobbies; let i=index'>
+    {{i+1}}:{{hobby}}
+    <button (click)="deleteFun(i)">x</button>
+  </li>
+</ul>
+
+<!-- 事件 (click)-->
+<button (click)="myFun()">点击</button>
+
+<!--表单-->
+<form (submit)="addHobby(hobby.value)">
+  <div>
+    <label for="hobby">爱好:</label>
+    <input type="text" #hobby>   <!-- #号是必须的，名字可以自由起-->
+  </div>
+</form>
+
+<button (click)="toggleEdit()">是否编辑用户信息</button>
+
+<!-- 编辑表单 -->
+<div *ngIf="isEdit">
+  <h1>编辑用户信息</h1>
+  <form action="">
+    <div>
+      <label for="name">姓名：</label>
+      <!-- <input type="text" {{ngModel}}="name" name="name"> -->
+      <input type="text" [(ngModel)]="name" name="name">
+    </div>
+    <div>
+      <label for="email">Email：</label>
+      <!-- <input type="text" {{ngModel}}="name" name="name"> -->
+      <input type="email" [(ngModel)]="email" name="email">
+    </div>
+    <!-- <div>
+      <label for="age">年龄：</label>
+      <input type="text" [(ngmodel)]="age" name="age">
+    </div> -->
+
+    <!-- <div>
+        <label for="age">城市：</label>
+        <input type="text" [(ngmodel)]="address.city" name="city">
+      </div> -->
+  </form>
+</div>
